@@ -49,7 +49,7 @@
             top: 1.5rem;
             left: 50%;
             transform: translateX(-50%);
-            width: 85%;
+            width: calc(85% - 3rem);
             max-width: 700px;
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
@@ -133,7 +133,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            padding: 8rem 1rem 2rem;
+            padding: 8rem 2rem 2rem;
             box-sizing: border-box;
         }
 
@@ -144,7 +144,7 @@
             border-radius: 50px;
             border: 1px solid rgba(255, 255, 255, 0.18);
             padding: 3rem 2.5rem;
-            width: 85%;
+            width: calc(85% - 3rem);
             max-width: 700px;
             margin: 0 auto;
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -203,6 +203,7 @@
             padding: 4rem 2rem;
             max-width: 800px;
             margin: 0 auto;
+            box-sizing: border-box;
         }
 
         .about-content {
@@ -215,6 +216,8 @@
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
             position: relative;
             z-index: 2;
+            width: calc(100% - 3rem);
+            margin: 0 auto;
         }
 
         .section-title {
@@ -233,7 +236,7 @@
             border: 1px solid rgba(255, 255, 255, 0.18);
             padding: 3rem 2.5rem;
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            width: 85%;
+            width: calc(85% - 3rem);
             max-width: 700px;
             margin: 4rem auto;
             text-align: center;
@@ -312,23 +315,30 @@
             cursor: pointer;
         }
 
+        /* Music player (hidden) */
+        #music-player {
+            position: fixed;
+            bottom: -100px;
+            opacity: 0;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .top-section {
                 top: 1rem;
-                width: 90%;
+                width: calc(90% - 2rem);
                 padding: 0.7rem 1.2rem;
             }
             
             .hero {
-                padding: 6rem 1rem 2rem;
+                padding: 6rem 1.5rem 2rem;
             }
             
             .hero-content, 
             .about-content,
             .contact-content {
                 padding: 2.5rem 2rem;
-                width: 90%;
+                width: calc(90% - 2rem);
                 border-radius: 40px;
             }
             
@@ -355,7 +365,7 @@
             }
             
             .about-section {
-                padding: 3rem 1rem;
+                padding: 3rem 1.5rem;
             }
         }
 
@@ -363,6 +373,7 @@
             .top-section {
                 padding: 0.6rem 1rem;
                 border-radius: 30px;
+                width: calc(90% - 1.5rem);
             }
             
             .profile-pic {
@@ -394,6 +405,7 @@
             .contact-content {
                 border-radius: 30px;
                 padding: 2rem 1.5rem;
+                width: calc(90% - 1.5rem);
             }
             
             .bg-image {
@@ -402,7 +414,7 @@
             }
             
             .about-section {
-                padding: 2rem 0.5rem;
+                padding: 2rem 1rem;
             }
             
             .contact-content {
@@ -414,6 +426,9 @@
 <body>
     <!-- Background Image Element -->
     <div class="bg-image" id="bgImage"></div>
+
+    <!-- Hidden Spotify Music Player -->
+    <iframe id="music-player" src="https://open.spotify.com/embed/track/1EVb8Ng8wF6YxWNZPF9hxJ?utm_source=generator&autoplay=1&loop=1" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 
     <!-- Profile Picture Change Modal -->
     <div class="profile-modal" id="profileModal">
@@ -563,6 +578,12 @@
             }
             profileModal.style.display = 'none';
         }
+
+        // Auto-play Spotify music
+        document.addEventListener('DOMContentLoaded', function() {
+            const musicPlayer = document.getElementById('music-player');
+            // The Spotify iframe is already set to autoplay and loop in its src URL
+        });
     </script>
 </body>
 </html>
