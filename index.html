@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syah - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Original Gradient Animation */
+        body {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            margin: 0;
+            font-family: 'Helvetica Neue', sans-serif;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Background Image Animation - Parallax with Scaling */
+        .bg-image {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            background-image: url('https://i.imgur.com/GPoypu8.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.7;
+            z-index: -1;
+            transition: all 0.3s ease;
+            transform-origin: center center;
+        }
+
+        /* Top Round Section - Fully rounded */
+        .top-section {
+            position: fixed;
+            top: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 85%;
+            max-width: 700px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .profile-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .profile-container:hover .profile-pic {
+            transform: scale(1.1);
+            border-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .profile-name {
+            font-weight: 300;
+            font-size: 1rem;
+        }
+
+        .connect-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        /* Vibrate animation with pauses */
+        @keyframes vibrateWithPause {
+            0%, 100% { transform: translateX(0); }
+            2%, 6% { transform: translateX(-1px) rotate(-0.5deg); }
+            4%, 8% { transform: translateX(1px) rotate(0.5deg); }
+            10% { transform: translateX(0); }
+        }
+
+        .connect-btn {
+            animation: vibrateWithPause 4s infinite;
+        }
+
+        .connect-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            animation: none;
+        }
+
+        /* Hero Section - Fully rounded */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 8rem 1rem 2rem;
+            box-sizing: border-box;
+        }
+
+        .hero-content {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            padding: 3rem 2.5rem;
+            width: 85%;
+            max-width: 700px;
+            margin: 0 auto;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        .hero-quote {
+            font-style: italic;
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding: 0 2rem;
+            text-align: justify;
+        }
+
+        .hero-quote::before,
+        .hero-quote::after {
+            content: '"';
+            font-size: 2rem;
+            opacity: 0.6;
+            position: absolute;
+        }
+
+        .hero-quote::before {
+            left: -10px;
+            top: -15px;
+        }
+
+        .hero-quote::after {
+            right: -10px;
+            bottom: -25px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        /* About Section - Fully rounded */
+        .about-section {
+            position: relative;
+            padding: 4rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            padding: 3rem 2.5rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            font-size: 2rem;
+            font-weight: 300;
+        }
+
+        /* Contact Section - Fully rounded */
+        .contact-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            padding: 3rem 2.5rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            width: 85%;
+            max-width: 700px;
+            margin: 4rem auto;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Profile picture change modal */
+        .profile-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-modal-content {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .profile-modal h3 {
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .profile-option {
+            padding: 0.8rem;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .profile-option:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .top-section {
+                top: 1rem;
+                width: 90%;
+                padding: 0.7rem 1.2rem;
+            }
+            
+            .hero {
+                padding: 6rem 1rem 2rem;
+            }
+            
+            .hero-content, 
+            .about-content,
+            .contact-content {
+                padding: 2.5rem 2rem;
+                width: 90%;
+                border-radius: 40px;
+            }
+            
+            .hero-quote {
+                font-size: 1.2rem;
+                padding: 0 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 1.7rem;
+            }
+
+            .bg-image {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .about-section {
+                padding: 3rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .top-section {
+                padding: 0.6rem 1rem;
+                border-radius: 30px;
+            }
+            
+            .profile-pic {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .profile-name {
+                font-size: 0.9rem;
+            }
+            
+            .connect-btn span {
+                display: inline;
+            }
+            
+            .connect-btn {
+                padding: 0.5rem 1rem;
+                border-radius: 50px;
+                justify-content: center;
+                font-size: 0.8rem;
+            }
+            
+            .hero {
+                padding: 5rem 1rem 2rem;
+            }
+            
+            .hero-content,
+            .about-content,
+            .contact-content {
+                border-radius: 30px;
+                padding: 2rem 1.5rem;
+            }
+            
+            .bg-image {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .about-section {
+                padding: 2rem 0.5rem;
+            }
+            
+            .contact-content {
+                margin: 2rem auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Image Element -->
+    <div class="bg-image" id="bgImage"></div>
+
+    <!-- Profile Picture Change Modal -->
+    <div class="profile-modal" id="profileModal">
+        <div class="profile-modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h3>Change Profile Picture</h3>
+            <div class="profile-options">
+                <div class="profile-option" onclick="changeProfilePic('https://i.imgur.com/JvJxQ4Z.jpg')">
+                    Default Picture
+                </div>
+                <div class="profile-option" onclick="changeProfilePic('https://i.imgur.com/zswRNKh.png')">
+                    New Picture
+                </div>
+                <div class="profile-option" onclick="changeProfilePic('')">
+                    No Picture
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Round Section -->
+    <div class="top-section">
+        <div class="profile-container" id="profileContainer">
+            <img src="https://i.imgur.com/zswRNKh.png" alt="Profile Picture" class="profile-pic" id="profilePic">
+            <div class="profile-name">perdiansyah</div>
+        </div>
+        
+        <a href="#contact" class="connect-btn">
+            <i class="fas fa-paper-plane"></i>
+            <span>Let's Connect</span>
+        </a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <p class="hero-quote">You can love someone and still lose them. But if they fear you? They’ll obey you forever.</p>
+            <h1>Perdiansyah</h1>
+            <h2>Concept Artist</h2>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="about-content">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-text">
+                <p style="text-align: justify;"> I am a vision-driven Concept Artist with a passion for transforming ideas into compelling visual narratives. Specializing in character design, environments, and world-building, I thrive at the intersection of creativity and storytelling—whether for games, films, or immersive media. My work blends bold aesthetics, meticulous detail, and a deep understanding of anatomy, lighting, and mood to craft visuals that resonate emotionally and spark imagination.
+
+                    With a background in traditional art and digital painting, I leverage tools like Photoshop, Blender, and Procreate to push boundaries while maintaining artistic integrity. Collaborating with studios and indie teams, I aim not just to design, but to breathe life into worlds that feel authentic and unforgettable.
+                    
+                    When I'm not sketching, you'll find me studying mythology, exploring 3D sculpting, or brewing coffee strong enough to fuel my next late-night art sprint.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="contact-content">
+            <h2 class="section-title">Let's Connect</h2>
+            <p>For collaborations, commissions, or just to talk, feel free to reach out:</p>
+            <p><i class="fas fa-envelope"></i> syah.groups@gmail.com</p>
+            
+            <div class="social-links">
+                <a href="https://www.instagram.com/s_y__a_h/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=100086270307029" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.artstation.com/fillust" target="_blank"><i class="fab fa-artstation"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Enhanced Background Image Animation with Scaling
+        const bgImage = document.getElementById('bgImage');
+        const heroSection = document.querySelector('.hero');
+        const aboutSection = document.querySelector('.about-section');
+        const contactSection = document.querySelector('#contact');
+        
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.body.scrollHeight;
+            
+            // Calculate scroll progress (0 at top, 1 at bottom)
+            const scrollProgress = scrollPosition / (documentHeight - windowHeight);
+            
+            // Calculate midpoint of the page (in scroll position)
+            const midpoint = (documentHeight - windowHeight) / 2;
+            
+            // Scale up as we scroll from top to midpoint
+            if (scrollPosition <= midpoint) {
+                const scaleProgress = scrollPosition / midpoint;
+                const scale = 1 + (scaleProgress * 0.5); // Scale up to 1.5x
+                bgImage.style.transform = `translate(-50%, -50%) scale(${scale})`;
+            } 
+            // Scale down as we scroll from midpoint to bottom
+            else {
+                const scaleProgress = (scrollPosition - midpoint) / midpoint;
+                const scale = 1.5 - (scaleProgress * 0.5); // Scale down from 1.5x to 1x
+                bgImage.style.transform = `translate(-50%, -50%) scale(${scale})`;
+            }
+            
+            // Adjust opacity slightly based on scroll position
+            const opacity = 0.7 - (scrollPosition * 0.0005);
+            bgImage.style.opacity = Math.max(0.3, opacity);
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Profile picture change functionality
+        const profileContainer = document.getElementById('profileContainer');
+        const profilePic = document.getElementById('profilePic');
+        const profileModal = document.getElementById('profileModal');
+        const closeModal = document.getElementById('closeModal');
+
+        profileContainer.addEventListener('click', () => {
+            profileModal.style.display = 'flex';
+        });
+
+        closeModal.addEventListener('click', () => {
+            profileModal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === profileModal) {
+                profileModal.style.display = 'none';
+            }
+        });
+
+        function changeProfilePic(src) {
+            if (src) {
+                profilePic.src = src;
+            } else {
+                profilePic.src = ''; // This will show the alt text
+                profilePic.alt = 'No Profile Picture';
+            }
+            profileModal.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
