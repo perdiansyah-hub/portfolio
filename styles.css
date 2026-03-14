@@ -1,0 +1,825 @@
+/* ===== CSS RESET ===== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== CSS VARIABLES ===== */
+:root {
+    --color-background: #ffffff;
+    --color-text: #333;
+    --color-accent: #1d1d1f;
+    --color-card-bg: #f5f5f7;
+    --border-angle: 17deg;
+}
+
+/* ===== GLOBAL STYLES ===== */
+body {
+    background: var(--color-background);
+    color: var(--color-text);
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4, h5, h6, p, a, span, div, button, input, textarea {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ===== DECODE TEXT EFFECT - SMOOTH VERSION ===== */
+.decode-text {
+    width: 100%;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: 'Poppins', sans-serif; /* DIUBAH ke Poppins sama seperti logo */
+    font-weight: 600; /* Tambah weight biar lebih tegas */
+    letter-spacing: 1px; /* Sedikit spacing */
+}
+
+.space {
+    display: inline-block;
+    width: 15px;
+}
+
+.text-animation {
+    display: inline-block;
+    position: relative;
+    color: transparent;
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif; /* DIUBAH ke Poppins */
+    font-weight: 600; /* Sama dengan logo */
+    letter-spacing: 1px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* State 1: Garis hitam dengan transisi smooth */
+.text-animation.state-1 {
+    position: relative;
+}
+
+.text-animation.state-1::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #333;
+    transform: translateY(-50%) scaleX(0);
+    animation: slideInSmooth 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes slideInSmooth {
+    0% {
+        transform: translateY(-50%) scaleX(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-50%) scaleX(1);
+        opacity: 1;
+    }
+}
+
+/* State 2: Blok hitam dengan transisi smooth */
+.text-animation.state-2 {
+    color: transparent;
+    position: relative;
+}
+
+.text-animation.state-2::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #333;
+    transform: scaleX(0);
+    animation: expandSmooth 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes expandSmooth {
+    0% {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+    60% {
+        opacity: 0.9;
+    }
+    100% {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+}
+
+/* State 3: Huruf muncul dengan transisi smooth */
+.text-animation.state-3 {
+    color: #333;
+    animation: fadeInSmooth 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.text-animation.state-3::before,
+.text-animation.state-3::after {
+    display: none;
+}
+
+@keyframes fadeInSmooth {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(5px);
+        filter: blur(3px);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.02) translateY(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: blur(0);
+    }
+}
+
+/* ===== CONTENT JUSTIFY ===== */
+.content-justify {
+    text-align: justify;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content-justify p {
+    text-align: justify;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    color: #444;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ===== HEADER & NAVIGATION ===== */
+header {
+    color: var(--color-text);
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.5rem 1.5rem;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 100px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 100px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.logo:hover {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.logo img {
+    height: 32px;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+}
+
+.logo:hover img {
+    transform: scale(1.05);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 5px;
+}
+
+nav ul li a {
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+    border-radius: 100px;
+    display: block;
+    font-family: 'Poppins', sans-serif;
+}
+
+nav ul li a:hover {
+    color: #000;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 8px;
+    color: var(--color-text);
+}
+
+/* ===== MAIN CONTENT ===== */
+main {
+    margin-top: 100px;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+section {
+    margin-bottom: 80px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+section.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== CHARACTER DESIGN SECTION ===== */
+#characters {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin: 40px 0;
+    width: 100%;
+}
+
+.card {
+    position: relative;
+    width: 350px;
+    min-height: 600px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.border-outer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(
+        0% 0%,
+        100% 0%,
+        100% calc(100% - 30px),
+        calc(100% - 30px) 100%,
+        0% 100%
+    );
+    background: linear-gradient(145deg, #666, #999);
+    padding: 2px;
+}
+
+.border-inner {
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(
+        0% 0%,
+        100% 0%,
+        100% calc(100% - 28px),
+        calc(100% - 28px) 100%,
+        0% 100%
+    );
+    background: #fff;
+    overflow: hidden;
+}
+
+.card-background {
+    z-index: 1;
+}
+
+.card-background .border-inner {
+    background: #000;
+}
+
+.card-background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+    transition: transform 0.5s ease, opacity 0.3s ease;
+}
+
+.card:hover .card-background img {
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+.card-content {
+    z-index: 2;
+    background: transparent;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover .card-content {
+    opacity: 1;
+}
+
+.card-content .border-inner {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.card-content-layout {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    color: white;
+}
+
+.vertical-title {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.2);
+    margin: 0;
+    padding: 20px 5px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif; /* DIUBAH ke Poppins */
+    font-weight: 600;
+}
+
+.card-copy {
+    flex: 1;
+    padding: 25px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.card-copy h2 {
+    color: white;
+    font-size: 1.5rem;
+    margin: 0;
+    border: none;
+    letter-spacing: -0.02em;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+}
+
+.card-copy h3 {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    font-weight: 400;
+    font-style: italic;
+    margin: 0;
+    line-height: 1.4;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+}
+
+.card-copy p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ===== PROJECT SECTION ===== */
+.project {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.project-cover-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    height: 560px;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 30px 50px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.4s ease;
+}
+
+.project-cover-container:hover {
+    transform: scale(1.02);
+}
+
+.project-cover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: #f5f5f7;
+    transition: opacity 0.6s ease;
+}
+
+.project-cover.primary {
+    object-fit: contain;
+    padding: 20px;
+    background: #f5f5f7;
+}
+
+.project-cover.secondary {
+    opacity: 0;
+    object-fit: cover;
+}
+
+.project-cover-container:hover .project-cover.primary {
+    opacity: 0;
+}
+
+.project-cover-container:hover .project-cover.secondary {
+    opacity: 1;
+}
+
+.project-video {
+    object-fit: cover;
+    background-color: #000;
+    width: 100%;
+    height: 100%;
+}
+
+.project-title {
+    font-size: 1.5rem;
+    margin: 24px 0 16px;
+    color: var(--color-accent);
+    cursor: pointer;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.project-title:hover {
+    color: #000;
+}
+
+/* ===== MODAL ===== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.98);
+    z-index: 2000;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.modal.show {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    max-width: 700px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.modal-content .decode-text {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    font-family: 'Poppins', sans-serif; /* DIUBAH ke Poppins */
+    font-weight: 600;
+}
+
+.comic-page {
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.comic-page.loaded {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.close-btn {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    color: var(--color-text);
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(255,255,255,0.9);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    z-index: 2001;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.close-btn:hover {
+    transform: rotate(90deg);
+    color: #000;
+}
+
+/* ===== SOCIAL MEDIA ===== */
+.social-media {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.social-icon {
+    color: var(--color-text);
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    background: rgba(0, 0, 0, 0.02);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.social-icon:hover {
+    transform: translateY(-3px);
+    background: #ffffff;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.instagram:hover { color: #E1306C; }
+.artstation:hover { color: #13AFF0; }
+.whatsapp:hover { color: #25D366; }
+
+/* ===== FOOTER ===== */
+footer {
+    background: transparent;
+    color: #666;
+    text-align: center;
+    padding: 40px 20px 20px;
+    margin-top: 60px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+footer p {
+    color: #666;
+    font-size: 0.9rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ===== LOADING SCREEN ===== */
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.loader.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.loader-content {
+    text-align: center;
+    color: var(--color-text);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px 60px;
+    border-radius: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.loader-video {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+
+.loader-text {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    letter-spacing: 2px;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    header {
+        padding: 0.5rem;
+    }
+    
+    .header-container {
+        padding: 0.5rem 1rem;
+        margin: 0 10px;
+    }
+    
+    nav {
+        position: fixed;
+        top: 80px;
+        left: 20px;
+        right: 20px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 20px 0;
+        border-radius: 30px;
+        transform: translateY(-150%);
+        transition: transform 0.4s ease;
+        z-index: 999;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    
+    nav.active {
+        transform: translateY(0);
+    }
+    
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .menu-toggle {
+        display: block;
+    }
+    
+    .logo span {
+        display: none;
+    }
+    
+    .logo img {
+        margin-right: 0;
+    }
+    
+    .decode-text {
+        font-size: 2rem;
+    }
+    
+    .card {
+        width: 300px;
+        min-height: 550px;
+    }
+    
+    .vertical-title {
+        font-size: 1.5rem;
+        padding: 15px 3px;
+    }
+    
+    .card-copy {
+        padding: 20px 15px;
+    }
+    
+    .card-copy h2 {
+        font-size: 1.3rem;
+    }
+    
+    .card-copy h3 {
+        font-size: 0.95rem;
+    }
+    
+    .loader-video {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .loader-content {
+        padding: 30px 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding: 20px 16px;
+    }
+    
+    .project-cover-container {
+        height: 450px;
+        max-width: 320px;
+    }
+    
+    .close-btn {
+        top: 20px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+        font-size: 1.5rem;
+    }
+    
+    .card {
+        width: 100%;
+        max-width: 320px;
+        min-height: 520px;
+    }
+    
+    .vertical-title {
+        font-size: 1.3rem;
+        padding: 10px 2px;
+    }
+    
+    .card-copy {
+        padding: 15px 12px;
+    }
+    
+    .card-copy h2 {
+        font-size: 1.2rem;
+    }
+    
+    .decode-text {
+        font-size: 1.5rem;
+    }
+    
+    .space {
+        width: 8px;
+    }
+    
+    .loader-video {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .loader-content {
+        padding: 25px 30px;
+    }
+    
+    .loader-text {
+        font-size: 1rem;
+    }
+}

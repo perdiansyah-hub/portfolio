@@ -4,565 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Child of Fate</title>
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Figtree&display=swap" rel="stylesheet">
-    <style>
-        /* CSS Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Body styling untuk background putih */
-        body {
-            background: #ffffff;
-            font-family: 'Poppins', sans-serif;
-            color: #333;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Header dengan logo (sama seperti sebelumnya) */
-        header {
-            color: #333;
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0.5rem 1.5rem;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 100px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 600;
-            text-decoration: none;
-            color: #333;
-            display: flex;
-            align-items: center;
-            transition: all 0.3s ease;
-            padding: 8px 12px;
-            border-radius: 100px;
-        }
-        
-        .logo:hover {
-            background: rgba(0, 0, 0, 0.03);
-        }
-        
-        .logo img {
-            height: 32px;
-            margin-right: 10px;
-            transition: all 0.3s ease;
-        }
-        
-        .logo:hover img {
-            transform: scale(1.05);
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 5px;
-        }
-        
-        nav ul li a {
-            color: #333;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            padding: 8px 16px;
-            border-radius: 100px;
-            display: block;
-        }
-        
-        nav ul li a:hover {
-            color: #000;
-            background: rgba(0, 0, 0, 0.05);
-        }
-        
-        /* Main Content */
-        main {
-            margin-top: 100px;
-            padding: 40px 20px;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        section {
-            margin-bottom: 80px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-        
-        section.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        h2 {
-            color: #1d1d1f;
-            margin-bottom: 24px;
-            font-weight: 600;
-            letter-spacing: -0.015em;
-            font-size: 2rem;
-        }
-        
-        p {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-            color: #444;
-            line-height: 1.7;
-        }
-        
-        /* About section text justify */
-        #about p {
-            text-align: justify;
-        }
-
-        /* ===== CHARACTER DESIGN SECTION - EXACT COPY FROM CODEPEN ===== */
-        #characters {
-            text-align: left;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        #characters h2,
-        #characters > p {
-            text-align: left;
-            margin-left: 0;
-            margin-bottom: 20px;
-        }
-
-        /* Container utama - persis seperti di CodePen */
-        .container {
-            position: relative;
-            width: 100%;
-            min-height: 600px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: "Figtree", sans-serif;
-            margin: 40px 0;
-        }
-
-        /* Gallery container - flex layout */
-        .gallery-container {
-            position: relative;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            max-width: 1200px;
-            width: 100%;
-            padding: 20px;
-        }
-
-        /* Box styling - persis seperti .box di CodePen */
-        .box {
-            position: relative;
-            width: 200px;
-            height: 300px;
-            background: #000;
-            border-radius: 20px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Background image menggunakan variable --img */
-        .box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--img) center/cover no-repeat;
-            transition: transform 0.5s ease;
-        }
-
-        /* Text yang muncul - menggunakan data-text */
-        .box::after {
-            content: attr(data-text);
-            position: absolute;
-            bottom: -100%;
-            left: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.9);
-            color: #000;
-            font-size: 1.2rem;
-            font-weight: 600;
-            text-align: center;
-            padding: 15px 0;
-            transition: bottom 0.3s ease;
-            backdrop-filter: blur(5px);
-            border-radius: 0 0 20px 20px;
-        }
-
-        /* Hover effects */
-        .box:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .box:hover::before {
-            transform: scale(1.1);
-        }
-
-        .box:hover::after {
-            bottom: 0;
-        }
-
-        /* Variasi box - untuk efek berbeda jika diperlukan */
-        .box-1, .box-2, .box-3, .box-4, .box-5 {
-            /* Semua sama, tapi bisa ditambahkan variasi */
-        }
-
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .box {
-                width: 160px;
-                height: 240px;
-            }
-            
-            .box::after {
-                font-size: 1rem;
-                padding: 12px 0;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .gallery-container {
-                gap: 15px;
-            }
-            
-            .box {
-                width: 140px;
-                height: 210px;
-            }
-            
-            .box::after {
-                font-size: 0.9rem;
-                padding: 10px 0;
-            }
-        }
-        /* ===== END OF CODEPEN STYLE ===== */
-
-        /* Project Section */
-        .project {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 20px;
-        }
-        
-        .project-cover-container {
-            position: relative;
-            width: 100%;
-            max-width: 360px;
-            height: 540px;
-            overflow: hidden;
-            border-radius: 30px;
-            box-shadow: 0 30px 50px rgba(0,0,0,0.1);
-            cursor: pointer;
-            transition: transform 0.4s ease;
-        }
-        
-        .project-cover-container:hover {
-            transform: scale(1.02);
-        }
-        
-        .project-cover {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            background-color: #f5f5f7;
-            transition: opacity 0.6s ease;
-        }
-        
-        .project-cover.secondary {
-            opacity: 0;
-        }
-        
-        .project-cover-container:hover .project-cover.primary {
-            opacity: 0;
-        }
-        
-        .project-cover-container:hover .project-cover.secondary {
-            opacity: 1;
-        }
-        
-        .project-video {
-            object-fit: cover;
-            background-color: #000;
-        }
-        
-        .project-title {
-            font-size: 1.6rem;
-            margin: 24px 0 16px;
-            color: #1d1d1f;
-            cursor: pointer;
-            text-align: center;
-            font-weight: 600;
-            letter-spacing: -0.01em;
-        }
-        
-        .project-title:hover {
-            color: #000;
-        }
-        
-        .project + p {
-            text-align: center;
-            max-width: 600px;
-            color: #444;
-        }
-        
-        /* Comic Reader Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255,255,255,0.98);
-            z-index: 2000;
-            overflow-y: auto;
-            padding: 20px;
-        }
-        
-        .modal.show {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .modal-content {
-            max-width: 700px;
-            margin: 40px auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px 0;
-        }
-        
-        .modal-content h2 {
-            color: #1d1d1f;
-            margin-bottom: 30px;
-        }
-        
-        .comic-page {
-            width: 100%;
-            margin-bottom: 20px;
-            border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-        
-        .comic-page.loaded {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .close-btn {
-            position: fixed;
-            top: 30px;
-            right: 30px;
-            color: #333;
-            font-size: 2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: rgba(255,255,255,0.9);
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            z-index: 2001;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-        
-        .close-btn:hover {
-            transform: rotate(90deg);
-            color: #000;
-        }
-        
-        /* Social Media Icons */
-        .social-media {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            margin-top: 24px;
-        }
-        
-        .social-icon {
-            color: #333;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-            background: rgba(0, 0, 0, 0.02);
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
-        .social-icon:hover {
-            transform: translateY(-3px);
-            background: #ffffff;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-        }
-        
-        .instagram:hover { color: #E1306C; }
-        .artstation:hover { color: #13AFF0; }
-        .whatsapp:hover { color: #25D366; }
-        
-        /* Footer */
-        footer {
-            background: transparent;
-            color: #666;
-            text-align: center;
-            padding: 40px 20px 20px;
-            margin-top: 60px;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
-        footer p {
-            color: #666;
-            font-size: 0.95rem;
-        }
-        
-        /* Mobile Menu Toggle */
-        .menu-toggle {
-            display: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-            padding: 8px;
-            color: #333;
-        }
-        
-        /* Loading Screen */
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
-            pointer-events: none;
-            opacity: 0;
-        }
-        
-        .loader.show {
-            opacity: 1;
-            pointer-events: all;
-        }
-        
-        .loader-content {
-            text-align: center;
-            color: #333;
-        }
-        
-        .loader-video {
-            width: 120px;
-            height: 120px;
-            object-fit: contain;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            header { padding: 0.5rem; }
-            
-            .header-container {
-                padding: 0.5rem 1rem;
-                margin: 0 10px;
-            }
-            
-            nav {
-                position: fixed;
-                top: 80px;
-                left: 20px;
-                right: 20px;
-                background: rgba(255, 255, 255, 0.95);
-                backdrop-filter: blur(10px);
-                padding: 20px 0;
-                border-radius: 30px;
-                transform: translateY(-150%);
-                transition: transform 0.4s ease;
-                z-index: 999;
-                box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            }
-            
-            nav.active { transform: translateY(0); }
-            
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
-            }
-            
-            .menu-toggle { display: block; }
-            
-            .logo span { display: none; }
-            .logo img { margin-right: 0; }
-            
-            h2 { font-size: 1.8rem; }
-        }
-        
-        @media (max-width: 480px) {
-            main { padding: 20px 16px; }
-            
-            .project-cover-container { height: 400px; }
-            
-            .close-btn {
-                top: 20px;
-                right: 20px;
-                width: 44px;
-                height: 44px;
-                font-size: 1.5rem;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Loading Screen -->
@@ -599,46 +50,173 @@
     <main>
         <!-- About Section -->
         <section id="about">
-            <h2>About me</h2>
-            <p>Hello! My name is Perdiansyah, and I am the Founder of Syah Studio. I am a webcomic artist dedicated to the art of visual and narrative storytelling. With several years of experience, I have produced a diverse range of works.</p>
-            <p>Specializing in fantasy and adventure with a dramatic twist. Known for unpredictable plots, unique character designs, and immersive environments that bring every story to life.</p>
-            <p>I am currently developing my latest project, a webcomic titled 'Child of Fate'. This series represents my newest venture into the realms of Action Fantasy.</p>
-        </section>
-        
-        <!-- Character Design Section - EXACT COPY FROM CODEPEN -->
-        <section id="characters">
-            <h2>Character Design</h2>
-            <p>Get to know the characters in the "Child of Fate" story</p>
-            
-            <!-- Container persis seperti di CodePen -->
-            <div class="container">
-                <div class="gallery-container">
-                    <!-- Box 1 - Darius -->
-                    <div class="box box-1" style="--img: url('images/character1.png');" data-text="Darius Agathinus"></div>
-                    
-                    <!-- Box 2 - Agatha -->
-                    <div class="box box-2" style="--img: url('images/character2.jpg');" data-text="Agatha Aelia"></div>
-                    
-                    <!-- Box 3 - Kael -->
-                    <div class="box box-3" style="--img: url('images/character3.jpg');" data-text="Kael Dien"></div>
-                    
-                    <!-- Box 4 - Seraphina -->
-                    <div class="box box-4" style="--img: url('images/character4.jpg');" data-text="Seraphina"></div>
-                    
-                    <!-- Box 5 - Zephyr -->
-                    <div class="box box-5" style="--img: url('images/character5.jpg');" data-text="Zephyr"></div>
-                </div>
+            <!-- Decode Text for About - EXACT CODEPEN STRUCTURE -->
+            <div class="decode-text">
+                <div class="text-animation">A</div>
+                <div class="text-animation">B</div>
+                <div class="text-animation">O</div>
+                <div class="text-animation">U</div>
+                <div class="text-animation">T</div>
+                <div class="space"></div>
+                <div class="text-animation">M</div>
+                <div class="text-animation">E</div>
             </div>
             
-            <!-- Hint text -->
-            <p style="text-align: center; margin-top: 20px; color: #666; font-size: 0.9rem;">
-                Hover over or tap on each character to see their name
-            </p>
+            <div class="content-justify">
+                <p>Hello! My name is Perdiansyah, and I am the Founder of Syah Studio. I am a webcomic artist dedicated to the art of visual and narrative storytelling. With several years of experience, I have produced a diverse range of works.</p>
+                <p>Specializing in fantasy and adventure with a dramatic twist. Known for unpredictable plots, unique character designs, and immersive environments that bring every story to life.</p>
+                <p>I am currently developing my latest project, a webcomic titled 'Child of Fate'. This series represents my newest venture into the realms of Action Fantasy.</p>
+            </div>
+        </section>
+        
+        <!-- Character Design Section -->
+        <section id="characters">
+            <!-- Decode Text for Character Design - EXACT CODEPEN STRUCTURE -->
+            <div class="decode-text">
+                <div class="text-animation">C</div>
+                <div class="text-animation">H</div>
+                <div class="text-animation">A</div>
+                <div class="text-animation">R</div>
+                <div class="text-animation">A</div>
+                <div class="text-animation">C</div>
+                <div class="text-animation">T</div>
+                <div class="text-animation">E</div>
+                <div class="text-animation">R</div>
+                <div class="space"></div>
+                <div class="text-animation">D</div>
+                <div class="text-animation">E</div>
+                <div class="text-animation">S</div>
+                <div class="text-animation">I</div>
+                <div class="text-animation">G</div>
+                <div class="text-animation">N</div>
+            </div>
+            
+            <div class="content-justify">
+                <p>Get to know the characters in the "Child of Fate" story</p>
+            </div>
+            
+            <!-- Cards container -->
+            <div class="cards">
+                <!-- Card 1 - Darius -->
+                <div class="card">
+                    <div class="card-background border-outer">
+                        <div class="border-inner">
+                            <img src="images/character1.png" alt="Darius Agathinus" />
+                        </div>
+                    </div>
+                    <div class="card-content border-outer">
+                        <div class="border-inner">
+                            <div class="card-content-layout">
+                                <h2 class="vertical-title">DARIUS</h2>
+                                <div class="card-copy">
+                                    <h2>Darius Agathinus</h2>
+                                    <h3>The Chosen One, destined to unite the world</h3>
+                                    <p>An ordinary human who possesses extraordinary courage and the authority of a king. His journey begins when he discovers his divine destiny to unite the fractured realms against the coming darkness.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 - Agatha -->
+                <div class="card">
+                    <div class="card-background border-outer">
+                        <div class="border-inner">
+                            <img src="images/character2.jpg" alt="Agatha Aelia" />
+                        </div>
+                    </div>
+                    <div class="card-content border-outer">
+                        <div class="border-inner">
+                            <div class="card-content-layout">
+                                <h2 class="vertical-title">AGATHA</h2>
+                                <div class="card-copy">
+                                    <h2>Agatha Aelia</h2>
+                                    <h3>The Mystic Mage, angel of destiny</h3>
+                                    <p>An angel destined by the gods to change a predetermined fate. She becomes the companion of King Darius Agathinus, connected by divine destiny to spend her life with him and guide his path.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 - Kael -->
+                <div class="card">
+                    <div class="card-background border-outer">
+                        <div class="border-inner">
+                            <img src="images/character3.jpg" alt="Kael Dien" />
+                        </div>
+                    </div>
+                    <div class="card-content border-outer">
+                        <div class="border-inner">
+                            <div class="card-content-layout">
+                                <h2 class="vertical-title">KAEL</h2>
+                                <div class="card-copy">
+                                    <h2>Kael Dien</h2>
+                                    <h3>The God of Death</h3>
+                                    <p>A god of death with the power to erase eternal existence, even among gods themselves. His motives remain shrouded in mystery as he walks the line between destruction and necessary balance.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 - Seraphina -->
+                <div class="card">
+                    <div class="card-background border-outer">
+                        <div class="border-inner">
+                            <img src="images/character4.jpg" alt="Seraphina" />
+                        </div>
+                    </div>
+                    <div class="card-content border-outer">
+                        <div class="border-inner">
+                            <div class="card-content-layout">
+                                <h2 class="vertical-title">SERAPHINA</h2>
+                                <div class="card-copy">
+                                    <h2>Seraphina</h2>
+                                    <h3>The Ancient Guardian</h3>
+                                    <p>An ancient guardian who has lived for thousands of years. She holds knowledge of prophecies and possesses the key to unlocking the mysteries of the past that will determine the future of all realms.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 - Zephyr -->
+                <div class="card">
+                    <div class="card-background border-outer">
+                        <div class="border-inner">
+                            <img src="images/character5.jpg" alt="Zephyr" />
+                        </div>
+                    </div>
+                    <div class="card-content border-outer">
+                        <div class="border-inner">
+                            <div class="card-content-layout">
+                                <h2 class="vertical-title">ZEPHYR</h2>
+                                <div class="card-copy">
+                                    <h2>Zephyr</h2>
+                                    <h3>The Wind Spirit</h3>
+                                    <p>A wind spirit who faithfully accompanies Darius. Though unable to speak, it communicates through movements of the wind and becomes a true companion in the adventure, offering guidance when needed most.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
         
         <!-- Projects Section -->
         <section id="projects">
-            <h2>Project</h2>
+            <!-- Decode Text for Project - EXACT CODEPEN STRUCTURE -->
+            <div class="decode-text">
+                <div class="text-animation">P</div>
+                <div class="text-animation">R</div>
+                <div class="text-animation">O</div>
+                <div class="text-animation">J</div>
+                <div class="text-animation">E</div>
+                <div class="text-animation">C</div>
+                <div class="text-animation">T</div>
+            </div>
+            
             <div class="project">
                 <div class="project-cover-container" id="comicCover">
                     <img src="images/the child of fate logo2.png" alt="Child of Fate Cover" class="project-cover primary" loading="lazy">
@@ -646,17 +224,32 @@
                         <source src="images/child of fate.mp4" type="video/mp4">
                     </video>
                 </div>
-                <h3 class="project-title" id="comicTitle">Child of Fate</h3>
-                <p>A fantasy tale about a child destined to change the world. An epic adventure with complex characters and a rich world.</p>
+                <h3 class="project-title" id="comicTitle">CHILD OF FATE</h3>
+                <div class="content-justify">
+                    <p>A fantasy tale about a child destined to change the world. An epic adventure with complex characters and a rich world.</p>
+                </div>
             </div>
         </section>
         
         <!-- Contact Section -->
         <section id="contact">
-            <h2>Contact</h2>
-            <p>If you're interested in my work or would like to collaborate, please contact me through:</p>
-            <p>Email: syah.groups@gmail.com</p>
-            <p>Social Media:</p>
+            <!-- Decode Text for Contact - EXACT CODEPEN STRUCTURE -->
+            <div class="decode-text">
+                <div class="text-animation">C</div>
+                <div class="text-animation">O</div>
+                <div class="text-animation">N</div>
+                <div class="text-animation">T</div>
+                <div class="text-animation">A</div>
+                <div class="text-animation">C</div>
+                <div class="text-animation">T</div>
+            </div>
+            
+            <div class="content-justify">
+                <p>If you're interested in my work or would like to collaborate, please contact me through:</p>
+                <p>Email: syah.groups@gmail.com</p>
+                <p>Social Media:</p>
+            </div>
+            
             <div class="social-media">
                 <a href="https://www.instagram.com/s_y__a_h/" target="_blank" class="social-icon instagram">
                     <i class="fab fa-instagram"></i>
@@ -675,7 +268,21 @@
     <div id="comicModal" class="modal">
         <span class="close-btn" id="closeModal">&times;</span>
         <div class="modal-content">
-            <h2>Child of Fate</h2>
+            <div class="decode-text modal-title">
+                <div class="text-animation">C</div>
+                <div class="text-animation">H</div>
+                <div class="text-animation">I</div>
+                <div class="text-animation">L</div>
+                <div class="text-animation">D</div>
+                <div class="space"></div>
+                <div class="text-animation">O</div>
+                <div class="text-animation">F</div>
+                <div class="space"></div>
+                <div class="text-animation">F</div>
+                <div class="text-animation">A</div>
+                <div class="text-animation">T</div>
+                <div class="text-animation">E</div>
+            </div>
             <img src="images/prologue rev1.jpg" alt="Page 1" class="comic-page" loading="lazy">
             <img src="images/prologue rev2.jpg" alt="Page 2" class="comic-page" loading="lazy">
             <img src="images/prologue rev3.jpg" alt="Page 3" class="comic-page" loading="lazy">
@@ -690,141 +297,10 @@
     
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Perdiansyah. All rights reserved.</p>
+        <p>© 2025 Perdiansyah. All rights reserved.</p>
     </footer>
     
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            initializePage();
-            setupLoadingScreen();
-            setupLazyLoading();
-        });
-        
-        function initializePage() {
-            const comicCover = document.getElementById('comicCover');
-            const comicTitle = document.getElementById('comicTitle');
-            const comicVideo = document.getElementById('comicVideo');
-            const comicModal = document.getElementById('comicModal');
-            const closeModal = document.getElementById('closeModal');
-            const menuToggle = document.getElementById('menuToggle');
-            const mainNav = document.getElementById('mainNav');
-            
-            // Comic modal events
-            comicCover.addEventListener('click', openComic);
-            comicTitle.addEventListener('click', openComic);
-            closeModal.addEventListener('click', closeComic);
-            
-            window.addEventListener('click', function(event) {
-                if (event.target === comicModal) closeComic();
-            });
-            
-            // Mobile menu toggle
-            menuToggle.addEventListener('click', function() {
-                mainNav.classList.toggle('active');
-                this.querySelector('i').classList.toggle('fa-bars');
-                this.querySelector('i').classList.toggle('fa-times');
-            });
-            
-            // Close mobile menu when link clicked
-            document.querySelectorAll('nav a').forEach(link => {
-                link.addEventListener('click', function() {
-                    if (window.innerWidth <= 768) {
-                        mainNav.classList.remove('active');
-                        menuToggle.querySelector('i').classList.add('fa-bars');
-                        menuToggle.querySelector('i').classList.remove('fa-times');
-                    }
-                });
-            });
-            
-            // Video hover
-            comicCover.addEventListener('mouseenter', function() {
-                comicVideo.load();
-                comicVideo.currentTime = 0;
-                comicVideo.play().catch(() => {});
-            });
-            
-            comicCover.addEventListener('mouseleave', function() {
-                comicVideo.pause();
-                comicVideo.currentTime = 0;
-            });
-            
-            function openComic() {
-                comicModal.classList.add('show');
-                document.body.style.overflow = 'hidden';
-                loadComicImages();
-            }
-            
-            function closeComic() {
-                comicModal.classList.remove('show');
-                document.body.style.overflow = 'auto';
-            }
-            
-            function loadComicImages() {
-                document.querySelectorAll('.comic-page').forEach(img => {
-                    if (img.complete) img.classList.add('loaded');
-                    else img.addEventListener('load', function() { this.classList.add('loaded'); });
-                });
-            }
-            
-            // Smooth scroll
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) target.scrollIntoView({ behavior: 'smooth' });
-                });
-            });
-            
-            // Intersection Observer for sections
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) entry.target.classList.add('show');
-                });
-            }, { threshold: 0.1 });
-            
-            document.querySelectorAll('section').forEach(section => observer.observe(section));
-        }
-        
-        function setupLoadingScreen() {
-            const loader = document.getElementById('loader');
-            
-            if (document.referrer === '' || performance.navigation.type === 1) {
-                loader.classList.add('show');
-                setTimeout(() => {
-                    loader.classList.remove('show');
-                    setTimeout(() => {
-                        if (loader.parentNode) loader.style.display = 'none';
-                    }, 500);
-                }, 1000);
-            } else {
-                loader.style.display = 'none';
-            }
-        }
-        
-        function setupLazyLoading() {
-            if ('IntersectionObserver' in window) {
-                const imageObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const img = entry.target;
-                            img.addEventListener('load', function() { this.classList.add('loaded'); });
-                            if (img.complete) img.classList.add('loaded');
-                            imageObserver.unobserve(img);
-                        }
-                    });
-                }, { rootMargin: '50px 0px' });
-                
-                document.querySelectorAll('.comic-page').forEach(img => imageObserver.observe(img));
-            }
-        }
-        
-        window.addEventListener('pageshow', function(event) {
-            if (event.persisted) {
-                const loader = document.getElementById('loader');
-                if (loader) loader.style.display = 'none';
-            }
-        });
-    </script>
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
-
