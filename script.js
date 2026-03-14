@@ -79,6 +79,14 @@ function initializePage() {
         observer.observe(section);
     });
     
+    // Set data-name attribute untuk cards
+    document.querySelectorAll('.card').forEach((card, index) => {
+        const names = ['DARIUS', 'AGATHA', 'KAEL', 'SERAPHINA', 'ZEPHYR'];
+        if (names[index]) {
+            card.setAttribute('data-name', names[index]);
+        }
+    });
+    
     function openComic() {
         if (comicModal) {
             comicModal.classList.add('show');
@@ -121,7 +129,7 @@ function setupLoadingScreen() {
                     loader.style.display = 'none';
                 }
             }, 500);
-        }, 1000);
+        }, 2000);
     } else {
         loader.style.display = 'none';
     }
@@ -156,7 +164,6 @@ function setupLazyLoading() {
     }
 }
 
-/* ===== DECODE TEXT EFFECT - SMOOTH VERSION ===== */
 function initDecodeText() {
     const decodeTexts = document.querySelectorAll('.decode-text');
     
