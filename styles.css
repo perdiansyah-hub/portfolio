@@ -311,7 +311,7 @@ section.show {
     transform: translateY(0);
 }
 
-/* ===== CHARACTER DESIGN SECTION - IMPROVED ===== */
+/* ===== CHARACTER DESIGN SECTION ===== */
 #characters {
     min-height: 100vh;
     display: flex;
@@ -370,7 +370,7 @@ section.show {
     overflow: hidden;
 }
 
-/* ===== IMPROVED CARD BACKGROUND ===== */
+/* Card Background */
 .card-background {
     z-index: 1;
     transition: all 0.5s ease;
@@ -381,7 +381,7 @@ section.show {
     position: relative;
 }
 
-/* Nama karakter sebelum hover - lebih jelas */
+/* Nama karakter sebelum hover */
 .card::before {
     content: attr(data-name);
     position: absolute;
@@ -414,7 +414,7 @@ section.show {
     background-clip: text;
 }
 
-/* Overlay gradient sebelum hover - lebih terang */
+/* Overlay gradient sebelum hover */
 .card-background::after {
     content: '';
     position: absolute;
@@ -434,7 +434,7 @@ section.show {
     opacity: 0.4;
 }
 
-/* Efek blur ringan pada gambar sebelum hover */
+/* Gambar card */
 .card-background img {
     width: 100%;
     height: 100%;
@@ -444,8 +444,7 @@ section.show {
     filter: brightness(1) contrast(1.1);
 }
 
-/* ===== HOVER EFFECTS ===== */
-/* Saat hover, overlay menjadi lebih gelap untuk teks lebih jelas */
+/* HOVER EFFECTS */
 .card:hover .card-background::after {
     opacity: 0.7;
     background: linear-gradient(
@@ -456,19 +455,16 @@ section.show {
     );
 }
 
-/* Nama menghilang saat hover */
 .card:hover::before {
     opacity: 0;
     transform: translateY(-20px);
 }
 
-/* Gambar sedikit blur saat hover agar teks lebih terbaca */
 .card:hover .card-background img {
     filter: brightness(0.7) blur(2px);
     transform: scale(1.05);
 }
 
-/* Card content muncul dengan efek smooth */
 .card-content {
     z-index: 20;
     background: transparent;
@@ -552,7 +548,7 @@ section.show {
     text-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
 
-/* ===== PROJECT SECTION ===== */
+/* ===== PROJECT SECTION - IMPROVED ===== */
 .project {
     display: flex;
     flex-direction: column;
@@ -565,16 +561,99 @@ section.show {
     width: 100%;
     max-width: 400px;
     height: 560px;
-    overflow: visible; /* Diubah dari hidden ke visible */
+    overflow: hidden;
     border-radius: 20px;
     box-shadow: 0 30px 50px rgba(0,0,0,0.1);
     cursor: pointer;
     transition: transform 0.4s ease;
-    background: #f5f5f7; /* Background konsisten */
+    background: #f5f5f7;
+}
+
+/* Nama project sebelum hover */
+.project-cover-container::before {
+    content: 'CHILD OF FATE';
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: 800;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 
+        2px 2px 4px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(255, 255, 255, 0.3);
+    z-index: 10;
+    pointer-events: none;
+    transition: all 0.4s ease;
+    opacity: 1;
+    transform: translateY(0);
+    background: linear-gradient(
+        45deg,
+        #fff 0%,
+        #fff 50%,
+        #ffd700 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Overlay gradient sebelum hover */
+.project-cover-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.1) 0%,
+        rgba(0, 0, 0, 0.3) 50%,
+        rgba(0, 0, 0, 0.6) 100%
+    );
+    z-index: 5;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    opacity: 0.4;
 }
 
 .project-cover-container:hover {
     transform: scale(1.02);
+}
+
+/* Saat hover, overlay lebih gelap */
+.project-cover-container:hover::after {
+    opacity: 0.7;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.3) 0%,
+        rgba(0, 0, 0, 0.5) 50%,
+        rgba(0, 0, 0, 0.8) 100%
+    );
+}
+
+/* Nama menghilang saat hover */
+.project-cover-container:hover::before {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+/* Gambar primary blur saat hover */
+.project-cover-container:hover .project-cover.primary {
+    filter: brightness(0.7) blur(3px);
+    transform: translate(-50%, -50%) scale(1.05);
+    opacity: 1;
+}
+
+/* Video muncul saat hover */
+.project-cover-container:hover .project-cover.secondary {
+    opacity: 1;
+    z-index: 3;
 }
 
 .project-cover {
@@ -584,9 +663,9 @@ section.show {
     transform: translate(-50%, -50%);
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Mempertahankan aspek rasio */
+    object-fit: contain;
     background-color: #f5f5f7;
-    transition: opacity 0.6s ease;
+    transition: all 0.5s ease;
 }
 
 .project-cover.primary {
@@ -594,28 +673,21 @@ section.show {
     padding: 20px;
     background: #f5f5f7;
     z-index: 2;
+    filter: brightness(1);
 }
 
 .project-cover.secondary {
     opacity: 0;
-    object-fit: contain; /* Diubah dari cover ke contain */
+    object-fit: contain;
+    background-color: #000;
     z-index: 1;
+    transition: opacity 0.5s ease;
 }
 
-/* Hover effects */
-.project-cover-container:hover .project-cover.primary {
-    opacity: 0;
-}
-
-.project-cover-container:hover .project-cover.secondary {
-    opacity: 1;
-}
-
-/* ===== PERBAIKAN VIDEO PROJECT ===== */
 /* Video specific */
 .project-video {
     object-fit: contain;
-    background-color: #000; /* Background hitam untuk video */
+    background-color: #000;
     width: 100%;
     height: 100%;
 }
@@ -629,6 +701,8 @@ section.show {
     font-weight: 600;
     letter-spacing: 2px;
     font-family: 'Poppins', sans-serif;
+    position: relative;
+    z-index: 6;
 }
 
 .project-title:hover {
@@ -715,7 +789,7 @@ section.show {
     color: #000;
 }
 
-/* ===== SOCIAL MEDIA - TANPA GARIS STRIP ===== */
+/* ===== SOCIAL MEDIA ===== */
 .social-media {
     display: flex;
     justify-content: center;
@@ -918,8 +992,15 @@ footer p {
         height: 50px;
     }
     
-    .project-video {
-        object-fit: contain;
+    .project-cover-container {
+        height: 500px;
+        max-width: 350px;
+    }
+    
+    .project-cover-container::before {
+        font-size: 1.6rem;
+        bottom: 30px;
+        letter-spacing: 3px;
     }
 }
 
@@ -931,6 +1012,12 @@ footer p {
     .project-cover-container {
         height: 450px;
         max-width: 320px;
+    }
+    
+    .project-cover-container::before {
+        font-size: 1.4rem;
+        bottom: 25px;
+        letter-spacing: 2px;
     }
     
     .close-btn {
@@ -991,9 +1078,5 @@ footer p {
         font-size: 1.6rem;
         width: 45px;
         height: 45px;
-    }
-    
-    .project-video {
-        object-fit: contain;
     }
 }
