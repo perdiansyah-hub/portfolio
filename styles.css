@@ -184,7 +184,7 @@ header {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0.5rem 1.5rem;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(209, 209, 209, 0.8);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: 100px;
