@@ -3,39 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Child of Fate</title>
-    
+    <title>Portfolio - Child of Fate | Perdiansyah</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Portfolio Perdiansyah — Founder of Syah Studio. Webcomic artist specializing in fantasy and adventure. Creator of 'Child of Fate', an action fantasy webcomic series.">
+    <meta name="author" content="Perdiansyah">
+    <meta name="keywords" content="webcomic, comic artist, fantasy, Child of Fate, Syah Studio, Perdiansyah, illustration, character design">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Portfolio — Child of Fate | Perdiansyah">
+    <meta property="og:description" content="Webcomic artist & founder of Syah Studio. Creator of 'Child of Fate' — an epic action fantasy series.">
+    <meta property="og:image" content="images/the child of fate logo2.png">
+    <meta property="og:url" content=""><!-- TODO: Ganti dengan URL live website kamu -->
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Portfolio — Child of Fate | Perdiansyah">
+    <meta name="twitter:description" content="Webcomic artist & founder of Syah Studio. Creator of 'Child of Fate' — an epic action fantasy series.">
+    <meta name="twitter:image" content="images/the child of fate logo2.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="apple-touch-icon" href="images/logo.png">
+
     <!-- External CSS -->
     <link rel="stylesheet" href="styles.css">
-    
+
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor" aria-hidden="true"></div>
+    <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
     <!-- Loading Screen -->
-    <div class="loader" id="loader">
+    <div class="loader" id="loader" role="status" aria-label="Loading">
         <div class="loader-content">
             <video class="loader-video" autoplay loop muted playsinline>
                 <source src="loading.mp4" type="video/mp4">
             </video>
         </div>
     </div>
-    
+
+    <!-- Scroll Progress Bar -->
+    <div id="scrollProgress" class="scroll-progress" aria-hidden="true"></div>
+
     <!-- Header -->
     <header>
         <div class="header-container">
-            <a href="#" class="logo">
-                <img src="images/logo.png" alt="Logo" loading="lazy">
-                <span>Perdiansyah</span>
-            </a>
-            <div class="menu-toggle" id="menuToggle">
-                <i class="fas fa-bars"></i>
+            <div class="logo-group">
+                <a href="#" class="logo" aria-label="Perdiansyah - Home">
+                    <img src="images/logo.png" alt="Syah Studio Logo" class="logo-light" loading="lazy">
+                    <img src="images/logo2.png" alt="Syah Studio Logo Dark" class="logo-dark" loading="lazy">
+                </a>
+                <div class="logo-name decode-text" aria-label="Perdiansyah">
+                    <div class="text-animation">P</div>
+                    <div class="text-animation">E</div>
+                    <div class="text-animation">R</div>
+                    <div class="text-animation">D</div>
+                    <div class="text-animation">I</div>
+                    <div class="text-animation">A</div>
+                    <div class="text-animation">N</div>
+                    <div class="text-animation">S</div>
+                    <div class="text-animation">Y</div>
+                    <div class="text-animation">A</div>
+                    <div class="text-animation">H</div>
+                </div>
             </div>
-            <nav id="mainNav">
+            <nav id="mainNav" aria-label="Main navigation">
                 <ul>
                     <li><a href="#about">About</a></li>
                     <li><a href="#characters">Characters</a></li>
@@ -43,15 +84,43 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
+            <div class="header-btns">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon" id="themeIcon" aria-hidden="true"></i>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mainNav">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
         </div>
     </header>
-    
+
+    <!-- Hero Section -->
+    <section id="hero" aria-label="Hero">
+        <div class="hero-content">
+            <div class="hero-label">Syah Studio</div>
+            <h1 class="hero-title">
+                <span class="hero-line">Webcomic Artist</span>
+                <span class="hero-line hero-line-accent">&amp; Illustrator</span>
+            </h1>
+            <p class="hero-sub">Creator of fantasy worlds, complex characters,<br>and stories that leave a mark.</p>
+            <div class="hero-actions">
+                <a href="#characters" class="hero-btn hero-btn-primary">See My Work</a>
+                <a href="#projects" class="hero-btn hero-btn-secondary">Read Comic</a>
+            </div>
+        </div>
+        <div class="hero-scroll-hint" aria-hidden="true">
+            <span>scroll</span>
+            <div class="hero-scroll-line"></div>
+        </div>
+    </section>
+
     <!-- Main Content -->
     <main>
         <!-- About Section -->
-        <section id="about">
-            <!-- Decode Text for About - EXACT CODEPEN STRUCTURE -->
-            <div class="decode-text">
+        <section id="about" aria-label="About Me">
+            <span class="section-eyebrow">Syah Studio</span>
+            <div class="decode-text" aria-label="About Me">
                 <div class="text-animation">A</div>
                 <div class="text-animation">B</div>
                 <div class="text-animation">O</div>
@@ -61,18 +130,17 @@
                 <div class="text-animation">M</div>
                 <div class="text-animation">E</div>
             </div>
-            
             <div class="content-justify">
                 <p>Hello! My name is Perdiansyah, and I am the Founder of Syah Studio. I am a webcomic artist dedicated to the art of visual and narrative storytelling. With several years of experience, I have produced a diverse range of works.</p>
                 <p>Specializing in fantasy and adventure with a dramatic twist. Known for unpredictable plots, unique character designs, and immersive environments that bring every story to life.</p>
                 <p>I am currently developing my latest project, a webcomic titled 'Child of Fate'. This series represents my newest venture into the realms of Action Fantasy.</p>
             </div>
         </section>
-        
+
         <!-- Character Design Section -->
-        <section id="characters">
-            <!-- Decode Text for Character Design - EXACT CODEPEN STRUCTURE -->
-            <div class="decode-text">
+        <section id="characters" aria-label="Character Design">
+            <span class="section-eyebrow">Child of Fate</span>
+            <div class="decode-text" aria-label="Character Design">
                 <div class="text-animation">C</div>
                 <div class="text-animation">H</div>
                 <div class="text-animation">A</div>
@@ -90,124 +158,83 @@
                 <div class="text-animation">G</div>
                 <div class="text-animation">N</div>
             </div>
-            
-            <div class="content-justify">
-                <p>Get to know the characters in the "Child of Fate" story</p>
-            </div>
-            
-            <!-- Cards container -->
-            <div class="cards">
-                <!-- Card 1 - Darius -->
-                <div class="card">
-                    <div class="card-background border-outer">
-                        <div class="border-inner">
-                            <img src="images/character1.png" alt="Darius Agathinus" />
-                        </div>
-                    </div>
-                    <div class="card-content border-outer">
-                        <div class="border-inner">
-                            <div class="card-content-layout">
-                                <h2 class="vertical-title">DARIUS</h2>
-                                <div class="card-copy">
-                                    <h2>Darius Agathinus</h2>
-                                    <h3>The Chosen One, destined to unite the world</h3>
-                                    <p>An ordinary human who possesses extraordinary courage and the authority of a king. His journey begins when he discovers his divine destiny to unite the fractured realms against the coming darkness.</p>
-                                </div>
-                            </div>
-                        </div>
+            <p class="section-desc">Get to know the characters in the world of Child of Fate.</p>
+
+            <!-- Character Showcase Gallery -->
+            <div class="showcase-container">
+                <div class="showcase-box showcase-box-1"
+                     style="--img: url(images/character1.png); --accent: #8B6FE8;"
+                     tabindex="0"
+                     role="button"
+                     aria-label="Character: Darius Agathinus">
+                    <div class="char-accent-bar"></div>
+                    <div class="char-initial">D</div>
+                    <div class="char-info-panel">
+                        <div class="char-info-name">DARIUS</div>
+                        <div class="char-info-role">Warrior · Protagonist</div>
+                        <div class="char-info-desc">A battle-hardened soldier haunted by his past, seeking redemption through the chaos of fate.</div>
                     </div>
                 </div>
-
-                <!-- Card 2 - Agatha -->
-                <div class="card">
-                    <div class="card-background border-outer">
-                        <div class="border-inner">
-                            <img src="images/character2.jpg" alt="Agatha Aelia" />
-                        </div>
-                    </div>
-                    <div class="card-content border-outer">
-                        <div class="border-inner">
-                            <div class="card-content-layout">
-                                <h2 class="vertical-title">AGATHA</h2>
-                                <div class="card-copy">
-                                    <h2>Agatha Aelia</h2>
-                                    <h3>The Mystic Mage, angel of destiny</h3>
-                                    <p>An angel destined by the gods to change a predetermined fate. She becomes the companion of King Darius Agathinus, connected by divine destiny to spend her life with him and guide his path.</p>
-                                </div>
-                            </div>
-                        </div>
+                <div class="showcase-box showcase-box-2"
+                     style="--img: url(images/character2.png); --accent: #E87F6F;"
+                     tabindex="0"
+                     role="button"
+                     aria-label="Character: Agatha Aelia">
+                    <div class="char-accent-bar"></div>
+                    <div class="char-initial">A</div>
+                    <div class="char-info-panel">
+                        <div class="char-info-name">AGATHA</div>
+                        <div class="char-info-role">Mage · Strategist</div>
+                        <div class="char-info-desc">A brilliant arcane scholar whose sharp mind masks the weight of a dark family legacy.</div>
                     </div>
                 </div>
-
-                <!-- Card 3 - Kael -->
-                <div class="card">
-                    <div class="card-background border-outer">
-                        <div class="border-inner">
-                            <img src="images/character3.jpg" alt="Kael Dien" />
-                        </div>
-                    </div>
-                    <div class="card-content border-outer">
-                        <div class="border-inner">
-                            <div class="card-content-layout">
-                                <h2 class="vertical-title">KAEL</h2>
-                                <div class="card-copy">
-                                    <h2>Kael Dien</h2>
-                                    <h3>The God of Death</h3>
-                                    <p>A god of death with the power to erase eternal existence, even among gods themselves. His motives remain shrouded in mystery as he walks the line between destruction and necessary balance.</p>
-                                </div>
-                            </div>
-                        </div>
+                <div class="showcase-box showcase-box-3"
+                     style="--img: url(images/character3.png); --accent: #5BC4A8;"
+                     tabindex="0"
+                     role="button"
+                     aria-label="Character: Kael Dien">
+                    <div class="char-accent-bar"></div>
+                    <div class="char-initial">K</div>
+                    <div class="char-info-panel">
+                        <div class="char-info-name">KAEL</div>
+                        <div class="char-info-role">Rogue · Trickster</div>
+                        <div class="char-info-desc">Swift, unpredictable, and fiercely loyal — a shadow who moves where the light won't follow.</div>
                     </div>
                 </div>
-
-                <!-- Card 4 - Seraphina -->
-                <div class="card">
-                    <div class="card-background border-outer">
-                        <div class="border-inner">
-                            <img src="images/character4.jpg" alt="Seraphina" />
-                        </div>
-                    </div>
-                    <div class="card-content border-outer">
-                        <div class="border-inner">
-                            <div class="card-content-layout">
-                                <h2 class="vertical-title">SERAPHINA</h2>
-                                <div class="card-copy">
-                                    <h2>Seraphina</h2>
-                                    <h3>The Ancient Guardian</h3>
-                                    <p>An ancient guardian who has lived for thousands of years. She holds knowledge of prophecies and possesses the key to unlocking the mysteries of the past that will determine the future of all realms.</p>
-                                </div>
-                            </div>
-                        </div>
+                <div class="showcase-box showcase-box-4"
+                     style="--img: url(images/character4.png); --accent: #E8C06F;"
+                     tabindex="0"
+                     role="button"
+                     aria-label="Character: Seraphina">
+                    <div class="char-accent-bar"></div>
+                    <div class="char-initial">S</div>
+                    <div class="char-info-panel">
+                        <div class="char-info-name">SERAPHINA</div>
+                        <div class="char-info-role">Oracle · Guide</div>
+                        <div class="char-info-desc">A seer who speaks in riddles, navigating visions of futures that may never come to pass.</div>
                     </div>
                 </div>
-
-                <!-- Card 5 - Zephyr -->
-                <div class="card">
-                    <div class="card-background border-outer">
-                        <div class="border-inner">
-                            <img src="images/character5.jpg" alt="Zephyr" />
-                        </div>
-                    </div>
-                    <div class="card-content border-outer">
-                        <div class="border-inner">
-                            <div class="card-content-layout">
-                                <h2 class="vertical-title">ZEPHYR</h2>
-                                <div class="card-copy">
-                                    <h2>Zephyr</h2>
-                                    <h3>The Wind Spirit</h3>
-                                    <p>A wind spirit who faithfully accompanies Darius. Though unable to speak, it communicates through movements of the wind and becomes a true companion in the adventure, offering guidance when needed most.</p>
-                                </div>
-                            </div>
-                        </div>
+                <div class="showcase-box showcase-box-5"
+                     style="--img: url(images/character5.png); --accent: #6F9BE8;"
+                     tabindex="0"
+                     role="button"
+                     aria-label="Character: Zephyr">
+                    <div class="char-accent-bar"></div>
+                    <div class="char-initial">Z</div>
+                    <div class="char-info-panel">
+                        <div class="char-info-name">ZEPHYR</div>
+                        <div class="char-info-role">Wanderer · Wildcard</div>
+                        <div class="char-info-desc">A mysterious drifter with no known allegiance — yet always appears at the turning point.</div>
                     </div>
                 </div>
             </div>
+
         </section>
-        
+
         <!-- Projects Section -->
-        <section id="projects">
-            <!-- Decode Text for Project - EXACT CODEPEN STRUCTURE -->
-            <div class="decode-text">
+        <section id="projects" aria-label="Projects">
+            <span class="section-eyebrow">Action Fantasy Webcomic</span>
+            <div class="decode-text" aria-label="Project">
                 <div class="text-animation">P</div>
                 <div class="text-animation">R</div>
                 <div class="text-animation">O</div>
@@ -216,25 +243,39 @@
                 <div class="text-animation">C</div>
                 <div class="text-animation">T</div>
             </div>
-            
+
             <div class="project">
-                <div class="project-cover-container" id="comicCover">
+                <div class="project-cover-container" id="comicCover" role="button" tabindex="0" aria-label="Open Child of Fate comic reader">
                     <img src="images/the child of fate logo2.png" alt="Child of Fate Cover" class="project-cover primary" loading="lazy">
-                    <video id="comicVideo" loop muted playsinline preload="none" class="project-cover secondary project-video">
+                    <video id="comicVideo" loop muted playsinline preload="none" class="project-cover secondary project-video" aria-hidden="true">
                         <source src="images/child of fate.mp4" type="video/mp4">
                     </video>
                 </div>
-                <h3 class="project-title" id="comicTitle">CHILD OF FATE</h3>
+                <div class="project-title decode-text" id="comicTitle" role="button" tabindex="0" aria-label="Open Child of Fate comic reader">
+                    <div class="text-animation">C</div>
+                    <div class="text-animation">H</div>
+                    <div class="text-animation">I</div>
+                    <div class="text-animation">L</div>
+                    <div class="text-animation">D</div>
+                    <div class="space"></div>
+                    <div class="text-animation">O</div>
+                    <div class="text-animation">F</div>
+                    <div class="space"></div>
+                    <div class="text-animation">F</div>
+                    <div class="text-animation">A</div>
+                    <div class="text-animation">T</div>
+                    <div class="text-animation">E</div>
+                </div>
                 <div class="content-justify">
                     <p>A fantasy tale about a child destined to change the world. An epic adventure with complex characters and a rich world.</p>
                 </div>
             </div>
         </section>
-        
+
         <!-- Contact Section -->
-        <section id="contact">
-            <!-- Decode Text for Contact - EXACT CODEPEN STRUCTURE -->
-            <div class="decode-text">
+        <section id="contact" aria-label="Contact">
+            <span class="section-eyebrow">Get in Touch</span>
+            <div class="decode-text" aria-label="Contact">
                 <div class="text-animation">C</div>
                 <div class="text-animation">O</div>
                 <div class="text-animation">N</div>
@@ -243,32 +284,28 @@
                 <div class="text-animation">C</div>
                 <div class="text-animation">T</div>
             </div>
-            
-            <div class="content-justify">
-                <p>If you're interested in my work or would like to collaborate, please contact me through:</p>
-                <p>Email: syah.groups@gmail.com</p>
-                <p>Social Media:</p>
-            </div>
-            
-            <div class="social-media">
-                <a href="https://www.instagram.com/s_y__a_h/" target="_blank" class="social-icon instagram">
-                    <i class="fab fa-instagram"></i>
+            <p class="section-desc">Interested in my work or want to collaborate?<br>Feel free to reach out.</p>
+            <a href="mailto:syah.groups@gmail.com" class="contact-email">syah.groups@gmail.com</a>
+
+            <div class="social-media" role="list" aria-label="Social media links">
+                <a href="https://www.instagram.com/s_y__a_h/" target="_blank" rel="noopener noreferrer" class="social-icon instagram" aria-label="Instagram profile" role="listitem">
+                    <i class="fab fa-instagram" aria-hidden="true"></i>
                 </a>
-                <a href="https://www.artstation.com/fillust" target="_blank" class="social-icon artstation">
-                    <i class="fab fa-artstation"></i>
+                <a href="https://www.artstation.com/fillust" target="_blank" rel="noopener noreferrer" class="social-icon artstation" aria-label="ArtStation portfolio" role="listitem">
+                    <i class="fab fa-artstation" aria-hidden="true"></i>
                 </a>
-                <a href="https://wa.me/" target="_blank" class="social-icon whatsapp">
-                    <i class="fab fa-whatsapp"></i>
+                <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="social-icon whatsapp" aria-label="WhatsApp contact" role="listitem">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
                 </a>
             </div>
         </section>
     </main>
-    
+
     <!-- Comic Reader Modal -->
-    <div id="comicModal" class="modal">
-        <span class="close-btn" id="closeModal">&times;</span>
+    <div id="comicModal" class="modal" role="dialog" aria-modal="true" aria-label="Child of Fate Comic Reader">
+        <button class="close-btn" id="closeModal" aria-label="Close comic reader">&times;</button>
         <div class="modal-content">
-            <div class="decode-text modal-title">
+            <div class="decode-text modal-title" aria-label="Child of Fate">
                 <div class="text-animation">C</div>
                 <div class="text-animation">H</div>
                 <div class="text-animation">I</div>
@@ -294,13 +331,29 @@
             <img src="images/prologue rev9.jpg" alt="Page 9" class="comic-page" loading="lazy">
         </div>
     </div>
-    
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up" aria-hidden="true"></i>
+    </button>
+
     <!-- Footer -->
     <footer>
-        <p>© 2025 Perdiansyah. All rights reserved.</p>
+        <p>© 2026 Perdiansyah — Syah Studio. All rights reserved.</p>
     </footer>
-    
-    <!-- External JavaScript -->
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous">&#8249;</button>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next">&#8250;</button>
+        <div class="lightbox-content">
+            <img id="lightboxImg" src="" alt="">
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
