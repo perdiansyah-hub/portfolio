@@ -23,9 +23,11 @@
     <meta name="twitter:description" content="Digital illustrator, webtoon artist & founder of Syah Studio. Open for international freelance & collaboration.">
     <meta name="twitter:image" content="images/the child of fate logo2.png">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="images/logo.png">
-    <link rel="apple-touch-icon" href="images/logo.png">
+    <!-- Favicon (light & dark mode) -->
+    <link rel="icon" type="image/png" href="images/logo.png" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/png" href="images/logo2.png" media="(prefers-color-scheme: dark)">
+    <link rel="apple-touch-icon" href="images/logo.png" media="(prefers-color-scheme: light)">
+    <link rel="apple-touch-icon" href="images/logo2.png" media="(prefers-color-scheme: dark)">
 
     <!-- External CSS -->
     <link rel="stylesheet" href="styles.css">
@@ -115,7 +117,9 @@
                 <a href="#characters" class="hero-btn hero-btn-primary">
                     View My Work <i class="fas fa-arrow-right" aria-hidden="true"></i>
                 </a>
-                <a href="#projects" class="hero-btn hero-btn-secondary">Read Comic</a>
+                <a href="#projects" class="hero-btn hero-btn-secondary">
+                    Read My Comic <i class="fas fa-book-open" aria-hidden="true"></i>
+                </a>
             </div>
 
             <!-- Quick stats -->
@@ -287,7 +291,7 @@
             <div class="showcase-wrapper">
             <div class="showcase-container">
                 <div class="showcase-box showcase-box-1"
-                     style="--img: url(images/character3.png); --accent: #5BC4A8; --banner: url(images/banner1.png);"
+                     style="--img: url(images/character3.png); --accent: #5BC4A8;"
                      tabindex="0" role="button" aria-label="Character: Kael Dien">
                     <div class="char-accent-bar"></div>
 
@@ -299,7 +303,7 @@
                     </div>
                 </div>
                 <div class="showcase-box showcase-box-2"
-                     style="--img: url(images/character2.png); --accent: #E87F6F; --banner: url(images/banner2.png);"
+                     style="--img: url(images/character2.png); --accent: #E87F6F;"
                      tabindex="0" role="button" aria-label="Character: Agatha Aelia">
                     <div class="char-accent-bar"></div>
 
@@ -311,7 +315,7 @@
                     </div>
                 </div>
                 <div class="showcase-box showcase-box-3"
-                     style="--img: url(images/character1.png); --accent: #8B6FE8; --banner: url(images/banner3.png);"
+                     style="--img: url(images/character1.png); --accent: #8B6FE8;"
                      tabindex="0" role="button" aria-label="Character: Darius Agathinus">
                     <div class="char-accent-bar"></div>
 
@@ -323,7 +327,7 @@
                     </div>
                 </div>
                 <div class="showcase-box showcase-box-4"
-                     style="--img: url(images/character4.png); --accent: #E8C06F; --banner: url(images/banner4.png);"
+                     style="--img: url(images/character4.png); --accent: #E8C06F;"
                      tabindex="0" role="button" aria-label="Character: Seraphina">
                     <div class="char-accent-bar"></div>
 
@@ -335,7 +339,7 @@
                     </div>
                 </div>
                 <div class="showcase-box showcase-box-5"
-                     style="--img: url(images/character5.png); --accent: #6F9BE8; --banner: url(images/banner5.png);"
+                     style="--img: url(images/character5.png); --accent: #6F9BE8;"
                      tabindex="0" role="button" aria-label="Character: Zephyr">
                     <div class="char-accent-bar"></div>
 
@@ -347,6 +351,7 @@
                     </div>
                 </div>
             </div>
+            <p class="showcase-hint" id="showcaseHint" aria-hidden="true">hover to explore characters</p>
             </div>
         </section>
 
@@ -417,7 +422,7 @@
                 <div class="text-animation">T</div>
             </div>
             <p class="section-desc">Got a project? Whether it's a commission, a collab, or just an idea you want to talk through — reach out.</p>
-            <a href="mailto:syah.groups@gmail.com" class="contact-email">
+            <a href="/cdn-cgi/l/email-protection#91e2e8f0f9bff6e3fee4e1e2d1f6fcf0f8fdbff2fefc" class="contact-email">
                 <i class="fas fa-envelope contact-email-icon" aria-hidden="true"></i>
                 <span class="contact-email-cta">
                     <i class="fas fa-hand-pointer" aria-hidden="true"></i> Email Me Here
@@ -436,7 +441,7 @@
                 </a>
             </div>
 
-            <p class="contact-note">Indonesia-based, open to work from anywhere. English is fine.</p>
+            <p class="contact-note">Based in Indonesia &mdash; open for international work.</p>
         </section>
     </main>
 
@@ -482,7 +487,6 @@
     <!-- Footer -->
     <footer>
         <div class="footer-inner">
-            <p class="footer-brand">Perdian · Syah Studio</p>
 
             <nav class="footer-nav" aria-label="Footer navigation">
                 <a href="#about">About</a>
@@ -492,7 +496,7 @@
                 <a href="#contact">Contact</a>
             </nav>
 
-            <p class="footer-copy">© 2026 All rights reserved. Crafted with purpose.</p>
+            <p class="footer-copy">Perdian | Syah Studio © 2026 All rights reserved.</p>
         </div>
     </footer>
 
@@ -504,6 +508,8 @@
         <div class="lightbox-content">
             <img id="lightboxImg" src="" alt="">
             <div class="lightbox-caption" id="lightboxCaption"></div>
+        </div>
+    </div>
         </div>
     </div>
 

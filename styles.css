@@ -133,7 +133,7 @@ body.dark .contact-email:hover .contact-email-cta {
     border-color: rgba(0,0,0,0.15);
     color: #444;
 }
-body.dark .contact-note { color: #555; }
+body.dark .contact-note { color: #666; }
 body.dark .modal-chapter-label { color: #555; }
 body.dark .footer-brand { color: #e8e6e0; }
 body.dark .footer-copy { color: #444; }
@@ -360,6 +360,27 @@ body.dark .hero-label {
 }
 
 .hero-btn i { font-size: 0.75rem; }
+
+.hero-btn-primary i {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hero-btn-primary:hover i {
+    transform: translateX(5px);
+}
+
+.hero-btn-secondary i {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hero-btn-secondary:hover i {
+    animation: bookFlip 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes bookFlip {
+    0%   { transform: rotate(0deg) scale(1); }
+    30%  { transform: rotate(-12deg) scale(1.15); }
+    70%  { transform: rotate(6deg) scale(1.1); }
+    100% { transform: rotate(0deg) scale(1); }
+}
 
 .hero-btn-primary {
     background: var(--color-accent);
@@ -637,7 +658,7 @@ main {
 }
 
 section {
-    padding: 80px 24px;
+    padding: 100px 24px;
     margin-bottom: 0;
     opacity: 0;
     transform: translateY(20px);
@@ -646,6 +667,7 @@ section {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    border-bottom: 1px solid var(--color-border);
 }
 
 section:last-child { border-bottom: none; }
@@ -674,12 +696,36 @@ section.show {
     width: 100%;
     font-size: clamp(1.8rem, 4.5vw, 2.8rem);
     text-align: center;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
     font-family: var(--font-display);
     font-weight: 300;
     letter-spacing: 0.5px;
     color: var(--color-accent);
+    position: relative;
 }
+
+.decode-text::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: var(--color-accent);
+    margin: 10px auto 0;
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: opacity 0.5s ease 0.3s, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+}
+
+section.show .decode-text::after {
+    opacity: 0.25;
+    transform: scaleX(1);
+}
+
+body.dark .decode-text::after { background: #e8e6e0; opacity: 0.15; }
+.logo-name.decode-text::after { display: none; }
+.project-title.decode-text::after { display: none; }
+.modal-title.decode-text::after { display: none; }
 
 .space {
     display: inline-block;
@@ -780,7 +826,14 @@ section.show {
     color: var(--color-accent);
     margin-bottom: 20px;
     text-align: justify;
-    text-align-last: center;
+    text-align-last: left;
+    border-left: 2px solid var(--color-accent);
+    padding-left: 20px;
+    opacity: 0.9;
+}
+
+body.dark .about-lead {
+    border-left-color: rgba(232, 230, 224, 0.4);
 }
 
 .about-text p {
@@ -861,6 +914,20 @@ section.show {
     padding: 5px 12px;
     border-radius: 100px;
     letter-spacing: 0.3px;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    cursor: default;
+}
+
+.about-tag:hover {
+    background: rgba(26,26,24,0.08);
+    border-color: rgba(26,26,24,0.2);
+    color: var(--color-accent);
+}
+
+body.dark .about-tag:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.18);
+    color: #e8e6e0;
 }
 
 /* ===== SKILLS SECTION ===== */
@@ -920,16 +987,40 @@ section.show {
 .skill-tools {
     font-size: 0.72rem;
     font-family: var(--font-mono);
-    color: #bbb;
+    color: #999;
     letter-spacing: 0.5px;
-    border-top: 1px solid rgba(0,0,0,0.06);
-    padding-top: 12px;
     text-align: center;
     width: 100%;
+    background: rgba(0,0,0,0.025);
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-top: auto;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+body.dark .skill-tools {
+    background: rgba(255,255,255,0.03);
+    border-color: rgba(255,255,255,0.06);
+    color: #777;
 }
 
 /* ===== CHARACTER SHOWCASE ===== */
 #characters { display: flex; flex-direction: column; }
+
+.showcase-hint {
+    font-size: 0.68rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ccc;
+    font-family: var(--font-body);
+    margin-top: 16px;
+    text-align: center;
+    transition: opacity 0.6s ease;
+    user-select: none;
+}
+
+body.dark .showcase-hint { color: #444; }
+.showcase-hint.hidden { opacity: 0; pointer-events: none; }
 
 .showcase-wrapper {
     width: 100%;
@@ -947,18 +1038,15 @@ section.show {
     transition: grid-template-columns 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Idle: dim non-hovered siblings lebih dramatis */
+/* Idle: grayscale + blur + dim non-hovered siblings */
 .showcase-container:hover .showcase-box {
-    filter: grayscale(60%) brightness(0.6) opacity(80%);
+    filter: grayscale(100%) brightness(0.55) blur(2px);
 }
 
 /* ── Showcase box ── */
 .showcase-box {
     position: relative;
-    background-image: var(--banner);
-    background-position: center top;
-    background-size: 100%;
-    background-repeat: no-repeat;
+    background: var(--color-card-bg);
     cursor: pointer;
     border-radius: 16px;
     overflow: hidden;
@@ -966,18 +1054,10 @@ section.show {
     transform: translateY(var(--offset));
     transition:
         filter              500ms ease,
-        transform           500ms cubic-bezier(0.4, 0, 0.2, 1),
-        background-size     600ms ease,
-        background-position 600ms ease;
+        transform           500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.showcase-box:hover,
-.showcase-box:focus {
-    background-size: 10%;
-    background-position: right top;
-}
-
-/* ── Character layer (on top of banner) ── */
+/* ── Character layer ── */
 .showcase-box::after {
     content: '';
     position: absolute;
@@ -996,10 +1076,10 @@ section.show {
 .showcase-box:nth-child(odd)  { --offset: -20px; }
 .showcase-box:nth-child(even) { --offset: 20px; }
 
-/* Hovered box: restore full color */
+/* Hovered box: full color, sharp */
 .showcase-container:hover .showcase-box:hover,
 .showcase-container:focus-within .showcase-box:focus {
-    filter: grayscale(0%) brightness(1) opacity(100%);
+    filter: grayscale(0%) brightness(1) blur(0px);
 }
 
 /* Column expansion */
@@ -1157,7 +1237,7 @@ section.show {
     height: 540px;
     overflow: hidden;
     border-radius: 20px;
-    box-shadow: 0 32px 60px rgba(0,0,0,0.1);
+    box-shadow: 0 32px 60px rgba(120, 80, 40, 0.13), 0 8px 24px rgba(80, 50, 20, 0.08);
     cursor: pointer;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
     background: #f0ede8;
@@ -1166,7 +1246,7 @@ section.show {
 .project-cover-container:hover,
 .project-cover-container:focus {
     transform: scale(1.02);
-    box-shadow: 0 40px 80px rgba(0,0,0,0.14);
+    box-shadow: 0 48px 90px rgba(120, 80, 40, 0.18), 0 16px 40px rgba(80, 50, 20, 0.12);
     outline: none;
 }
 
@@ -1411,14 +1491,13 @@ section.show {
 }
 
 .contact-note {
-    font-size: 0.75rem;
-    color: #bbb;
+    font-size: 0.82rem;
+    color: #888;
     font-family: var(--font-body);
-    font-weight: 300;
-    letter-spacing: 0.5px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
     margin-top: 28px;
-    text-align: justify;
-    text-align-last: center;
+    text-align: center;
 }
 
 /* ===== SOCIAL MEDIA ===== */
@@ -1432,7 +1511,7 @@ section.show {
 
 .social-icon {
     color: var(--color-text-muted);
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     transition: all 0.3s ease;
     width: 54px;
     height: 54px;
@@ -1440,15 +1519,22 @@ section.show {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background: transparent;
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
     text-decoration: none;
 }
 
-.social-icon:hover { transform: translateY(-4px); }
+.social-icon:hover {
+    transform: translateY(-4px);
+    border-color: transparent;
+}
 .social-icon i { transition: all 0.3s ease; }
 .social-icon:hover i { transform: scale(1.15); }
+.instagram:hover { background: rgba(225, 48, 108, 0.08); }
 .instagram:hover i { color: #E1306C; }
+.artstation:hover { background: rgba(19, 175, 240, 0.08); }
 .artstation:hover i { color: #13AFF0; }
+.whatsapp:hover { background: rgba(37, 211, 102, 0.08); }
 .whatsapp:hover i { color: #25D366; }
 
 /* ===== MODAL ===== */
@@ -1962,17 +2048,19 @@ body.dark .footer-copy { color: #444; }
         justify-content: space-between;
         align-items: center;
         position: relative;
-        /* Kunci tinggi dan lebar secara eksplisit */
         height: 52px;
         width: calc(100vw - 20px);
         max-width: calc(100vw - 20px);
         box-sizing: border-box;
-        /* contain:layout mencegah konten dalam mendorong ukuran container
-           tanpa memotong position:fixed children */
         contain: layout;
         overflow: visible;
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
+        background: rgba(242, 240, 235, 0.98);
+    }
+
+    body.dark .header-container {
+        background: rgba(17, 17, 16, 0.98);
     }
 
     .logo-group {
@@ -2076,8 +2164,42 @@ body.dark .footer-copy { color: #444; }
     nav ul { flex-direction: column; align-items: stretch; gap: 2px; padding: 0 8px; }
     nav ul li a { padding: 10px 16px; border-radius: 12px; font-size: 0.875rem; }
 
-    .hero-stats { flex-direction: column; gap: 20px; margin-top: 36px; }
+    .hero-stats {
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 28px;
+    }
     .hero-stat-divider { width: 36px; height: 1px; }
+
+    #hero {
+        min-height: 100dvh;
+        padding: 100px 20px 0;
+        justify-content: space-between;
+    }
+
+    .hero-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-bottom: 20px;
+    }
+
+    .hero-scroll-hint {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        padding: 24px 0 32px;
+        align-self: center;
+        animation: heroScrollInMobile 0.7s ease forwards 1.2s;
+        opacity: 0;
+    }
+
+    @keyframes heroScrollInMobile {
+        from { opacity: 0; transform: translateY(12px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
 
     .showcase-container { height: 400px; gap: 6px; }
     .char-initial { font-size: 4rem; }

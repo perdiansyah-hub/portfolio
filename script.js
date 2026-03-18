@@ -1,4 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Showcase hint — fade out on first hover
+    const showcaseHint = document.getElementById('showcaseHint');
+    const showcaseContainer = document.querySelector('.showcase-container');
+    if (showcaseHint && showcaseContainer) {
+        showcaseContainer.addEventListener('mouseenter', function hideHint() {
+            showcaseHint.classList.add('hidden');
+            showcaseContainer.removeEventListener('mouseenter', hideHint);
+        });
+    }
+
     initializePage();
     setupLoadingScreen();
     setupLazyLoading();
